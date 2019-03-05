@@ -12,9 +12,10 @@ staten_island = inventory[inventory.location == 'Staten Island']
 product_request = staten_island['product_description']
 # print(product_request)
 
-# Show all seeds for in Brooklyn
-seed_request = inventory[(inventory.location == 'Brooklyn') & (inventory.product_type == 'seeds')]
-# print(seed_request)
+# Show all seeds and planters for in Brooklyn
+seed_request = inventory[(inventory.location == 'Brooklyn') & (inventory.product_type == 'seeds')
+                         | (inventory.product_type == 'planter') & (inventory.location == 'Brooklyn')]
+print(seed_request)
 
 # Add new column 'in_stock' that is either True or False based on the quantity column
 inventory['in_stock'] = inventory.apply(lambda x: True if x.quantity > 0 else False, axis=1)
